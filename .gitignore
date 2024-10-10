@@ -1,0 +1,46 @@
+# Node.js Backend (backend/)
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/npm-debug.log
+backend/.DS_Store
+
+# Frontend (frontend/) - Using shadcn with React (assumes Vite setup)
+frontend/node_modules/
+frontend/.env
+frontend/.DS_Store
+frontend/dist/
+frontend/.next/
+
+# React Native (Oolkar/)
+Oolkar/node_modules/
+Oolkar/android/
+Oolkar/ios/
+Oolkar/.env
+Oolkar/.DS_Store
+Oolkar/*.log
+Oolkar/*.iml
+Oolkar/.idea/
+Oolkar/.vscode/
+Oolkar/expo/
+Oolkar/.gradle/
+Oolkar/.expo/
+Oolkar/.expo-shared/
+
+# MacOS
+*.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional NPM Cache Directory
+.npm/
+
+# ESLint
+eslintcache
+
+# IDE Settings
+.idea/
+.vscode/
