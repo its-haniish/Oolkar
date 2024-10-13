@@ -3,24 +3,34 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS CSS file
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer'; // Import useInView
-import { toast } from 'sonner';
 
 const App = () => {
   const [showSubscribePopup, setShowSubscribePopup] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [messsage, setMessage] = useState('');
+  const [email, setEmail] = useState('');
   const [ref, inView] = useInView({
     triggerOnce: false, // Allow multiple triggers
     threshold: 0.1, // Trigger when 10% of the component is in view
   });
-
-
-  const handleToast = () => {
-    toast.success("Thank you for subscribing!", {
-      position: "top-right",
-    });
-  };
+  ;
 
   const handleSubscribe = () => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(email)) {
+      showMessage("Invalid email.")
+      return;
+    }
+    showMessage("Subscribed successfully.")
+    setIsSubscribed(true);
+    setShowSubscribePopup(false);
+  }
 
+  const showMessage = (msg) => {
+    setMessage(msg);
+    setTimeout(() => {
+      setMessage('');
+    }, 3000);
   }
 
 
@@ -87,8 +97,8 @@ const App = () => {
                       </g>
                     </g>
                   </svg>
-                  <input type="text" name="text" className="input" placeholder="info@gmail.com" />
-                  <button className="Subscribe-btn">
+                  <input type="text" name="text" value={email} onChange={e => setEmail(e.target.value)} className="input" placeholder="info@gmail.com" />
+                  <button className="Subscribe-btn" onClick={handleSubscribe}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="30"
@@ -104,8 +114,8 @@ const App = () => {
                 </div>
 
                 :
-                <button onClick={() => { setShowSubscribePopup(true) }} type="button" className="btn">
-                  <strong>SUBSCRIBE NOW</strong>
+                <button onClick={() => !isSubscribed && setShowSubscribePopup(true)} type="button" className="btn">
+                  <strong>{isSubscribed ? "SUBSCRIBED" : "SUBSCRIBE NOW"}</strong>
                   <div id="container-stars">
                     <div id="stars"></div>
                   </div>
@@ -116,17 +126,21 @@ const App = () => {
                   </div>
                 </button>
             }
+            {
+              <p className='text-white text-sm'>{messsage}</p>
+            }
           </div>
 
         </section>
 
         {/* Services Section */}
         <section className="w-full h-screen flex flex-col justify-between items-start text-white scroll-snap-align-start">
-          <div className="services w-screen h-[70vh] flex justify-center items-center">
+          <div className="services w-screen h-[70vh] flex justify-center items-center bg-cover bg-center animate-vibrate">
             <p className="text-[4rem] text-white text-center tracking-widest leading-relaxed font-semibold">
               Styling & Beauty <br /> Services Made <br /> Easy, Just for <br /> You!
             </p>
           </div>
+
           <footer className="flex justify-evenly items-center w-screen px-4 pb-20">
             <div className="flex flex-col justify-start items-start gap-2">
               <h3 className="text-gray-400 text-xl text-center">CONTACT US</h3>
