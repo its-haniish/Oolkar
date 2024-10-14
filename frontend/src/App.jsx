@@ -15,15 +15,24 @@ const App = () => {
   });
   ;
 
-  const handleSubscribe = () => {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!emailRegex.test(email)) {
-      showMessage("Invalid email.")
-      return;
-    }
-    showMessage("Subscribed successfully.")
-    setIsSubscribed(true);
-    setShowSubscribePopup(false);
+  const handleSubscribe = async () => {
+    // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    // if (!emailRegex.test(email)) {
+    //   showMessage("Invalid email.")
+    //   return;
+    // }
+    // showMessage("Subscribed successfully.")
+    // setIsSubscribed(true);
+    // setShowSubscribePopup(false);
+    // localStorage.setItem('subscribed_oolkar', true);
+    console.log(process.env.REACT_APP_BASE_URL);
+    // await fetch(`${process.env.REACT_APP_BASE_URL}/subscribe`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ email }),
+    // })
   }
 
   const showMessage = (msg) => {

@@ -6,7 +6,7 @@ const routes = require('./routes/routes.js');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-
+// Middleware
 app.use(express.json());
 app.use(cors());
 
