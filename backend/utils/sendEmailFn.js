@@ -11,7 +11,7 @@ const sendEmailFn = async ({ email, subject, msg }) => {
         });
 
         let options = {
-            from: "OOLKAR",
+            from: "Team OOLKAR",
             to: email,
             subject: subject,
             html: msg
