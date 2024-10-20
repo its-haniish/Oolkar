@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS CSS file
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer'; // Import useInView
+import useMobile from "./hooks/useMobile"
 
 const App = () => {
   const [showSubscribePopup, setShowSubscribePopup] = useState(false);
@@ -14,6 +15,8 @@ const App = () => {
     threshold: 0.1, // Trigger when 10% of the component is in view
   });
   ;
+
+  const isMobile = useMobile();
 
   const handleSubscribe = async () => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -54,7 +57,14 @@ const App = () => {
       setIsSubscribed(true);
     }
 
+    isMobile ?
+      console.log("Mobile") :
+      console.log("Desktop")
+
+
   }, []);
+
+
 
   return (
     <>
@@ -66,18 +76,25 @@ const App = () => {
             ref={ref} // Attach the ref to the image
             src="/white_transparent.png"
             alt="Oolkar logo"
-            className="absolute top-4 left-4 z-10 w-52 h-auto"
+            className={`absolute top-4 left-4 z-10  ${isMobile ? 'w-32' : 'w-52'} h-auto`}
             initial={{ opacity: 0, x: -100 }} // Initial state
             animate={{
               opacity: inView ? 1 : 0, // Animate opacity based on inView
               x: inView ? 0 : -100, // Animate position
             }}
             transition={{ duration: 1 }} // Animation duration
+
+
           />
 
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[8rem] flex flex-col justify-center items-center">
             <span className="loader"></span>
-            <p className="styled_text text-[8rem] text-center">
+            <p
+              style={{
+                textShadow: `${isMobile ? "2px 2px 0 gray,-2px 2px 0 gray, 2px -2px 0 gray, -2px -2px 0 gray" : "4px 4px 0 gray,-4px 4px 0 gray, 4px -4px 0 gray, -4px -4px 0 gray"}
+              `,
+              }}
+              className={`styled_text text-white ${isMobile ? "text-[4rem]" : "text-[8rem]"} text-center`}>
               Launching <br /> Soon!
             </p>
           </div>
@@ -87,9 +104,9 @@ const App = () => {
         <section className="w-full h-screen flex justify-center items-center scroll-snap-align-start relative">
 
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-5">
-            <h2 className="text-gray-400 text-2xl text-center">ABOUT</h2>
+            <h2 className={`text-gray-400 ${isMobile ? 'text-xl' : 'text-2xl'} text-center`}>ABOUT</h2>
 
-            <p className="text-white text-4xl text-justify leading-10 tracking-wider h-[32vh]">
+            <p className={`text-white  px-7  text-justify ${isMobile ? 'h-fit text-2xl leading-8 tracking-normal w-screen' : 'h-[32vh] text-4xl leading-10 tracking-wider'}`}>
               Oolkar is an innovative booking platform connecting salon and parlor service providers with users seeking hassle-free appointments. Enjoy the convenience of booking services without any platform charges or fees. Oolkar is made with love by our dedicated team for everyone!
             </p>
 
@@ -149,28 +166,29 @@ const App = () => {
         </section>
 
         {/* Services Section */}
-        <section className="w-full h-screen flex flex-col justify-between items-start text-white scroll-snap-align-start">
-          <div className="services w-screen h-[70vh] flex justify-center items-center bg-cover bg-center animate-vibrate">
-            <p className="text-[4rem] text-white text-center tracking-widest leading-relaxed font-semibold">
+        <section className="w-full h-screen flex flex-col justify-between items-start text-white scroll-snap-align-start" >
+          <div className={`services w-screen ${isMobile ? 'h-[50vh]' : 'h-[70vh]'}  flex justify-center items-center bg-cover bg-center animate-vibrate`}>
+            <p className={`${isMobile ? 'text-[2rem]' : 'text-[4rem]'} text-white text-center tracking-widest leading-relaxed font-semibold`} >
               Styling & Beauty <br /> Services Made <br /> Easy, Just for <br /> You!
             </p>
           </div>
 
-          <footer className="flex justify-evenly items-center w-screen px-4 pb-20">
-            <div className="flex flex-col justify-start items-start gap-2">
-              <h3 className="text-gray-400 text-xl text-center">CONTACT US</h3>
-              <a href="https://wa.me/9671323707" target="_blank" rel="noopener noreferrer" className="text-white text-2xl text-center">+91 9671323707</a>
-              <a href="mailto:hello.oolkar@gmail.com" target="_blank" rel="noopener noreferrer" className="text-white text-2xl text-center">hello.oolkar@gmail.com</a>
+          <footer className={`flex ${isMobile ? 'flex-col justify-start items-start' : 'justify-evenly items-center'} w-screen px-4 pb-20`}>
+
+            <div className={`flex flex-col justify-start items-start ${isMobile ? 'gap-2 mb-6' : 'gap-2'}`}>
+              <h3 className={`text-gray-400 ${isMobile ? 'text-sm text-center w-screen mb-2' : "text-xl text-center"}`}>CONTACT US</h3>
+              <a href="https://wa.me/9671323707" target="_blank" rel="noopener noreferrer" className={`text-white ${isMobile ? 'text-base text-center w-screen' : 'text-2xl text-center'}`}>+91 9671323707</a>
+              <a href="mailto:hello.oolkar@gmail.com" target="_blank" rel="noopener noreferrer" className={`text-white ${isMobile ? 'text-base text-center w-screen' : 'text-2xl text-center'}`}>hello.oolkar@gmail.com</a>
             </div>
 
-            <div className="flex flex-col justify-start items-start gap-2">
-              <h3 className="text-gray-400 text-xl text-center">BETA TESTING LOCATION</h3>
-              <p className="text-white text-2xl text-center">&#9679; Gurugram</p>
+            <div className={`flex flex-col justify-start items-start ${isMobile ? 'gap-2 mb-6' : 'gap-2'}`}>
+              <h3 className={`text-gray-400 ${isMobile ? 'text-sm text-center w-screen' : "text-xl text-center"}`}>BETA TESTING LOCATION</h3>
+              <p className={`text-white ${isMobile ? 'text-base text-center w-screen' : 'text-2xl text-center'}`}>&#9679; Gurugram</p>
             </div>
 
-            <div className="flex flex-col justify-start items-start gap-2">
-              <h3 className="text-gray-400 text-xl text-center">FOLLOW US ON IG & FB</h3>
-              <a href="https://www.instagram.com/hello.oolkar?igsh=MXQwaWg2cWkwYXo1eA==" target="_blank" rel="noopener noreferrer" className="text-white text-2xl text-center cursor-pointer">@hello.oolkar</a>
+            <div className={`flex flex-col justify-start items-start ${isMobile ? 'gap-2 mb-6' : 'gap-2'}`}>
+              <h3 className={`text-gray-400 ${isMobile ? 'text-sm text-center w-screen' : "text-xl text-center"}`}>FOLLOW US ON IG & FB</h3>
+              <a href="https://www.instagram.com/hello.oolkar?igsh=MXQwaWg2cWkwYXo1eA==" target="_blank" rel="noopener noreferrer" className={`text-white ${isMobile ? 'text-base text-center w-screen' : 'text-2xl text-center'}`}>@hello.oolkar</a>
             </div>
           </footer>
         </section>
