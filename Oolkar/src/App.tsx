@@ -28,6 +28,9 @@ const App: React.FC = () => {
           component={Home}
           options={{
             tabBarIcon: ({ color }) => <Octicons name="home" color={color} size={26} />,
+            tabBarLabelStyle: {
+              fontFamily: "TiltNeon-Regular",
+            },
             // Custom combined header
             header: () => (
               <View style={styles.headerContainer}>
@@ -71,6 +74,9 @@ const App: React.FC = () => {
           component={Explore}
           options={{
             tabBarIcon: ({ color }) => <Octicons name="zap" color={color} size={26} />,
+            tabBarLabelStyle: {
+              fontFamily: "TiltNeon-Regular",
+            }
           }}
         />
         <Tab.Screen
@@ -78,6 +84,9 @@ const App: React.FC = () => {
           component={Bookings}
           options={{
             tabBarIcon: ({ color }) => <Octicons name="history" color={color} size={26} />,
+            tabBarLabelStyle: {
+              fontFamily: "TiltNeon-Regular",
+            }
           }}
         />
         <Tab.Screen
@@ -85,11 +94,15 @@ const App: React.FC = () => {
           component={Profile}
           options={{
             tabBarIcon: ({ color, focused }) => {
+
               const avatarSource = focused
-                ? require('./assets/userdummy-blue.png')
-                : require('./assets/userdummy-gray.png');
+                ? require('./assets/user/userdummy-blue.png')
+                : require('./assets/user/userdummy-gray.png');
               return <Avatar.Image size={30} source={avatarSource} />;
             },
+            tabBarLabelStyle: {
+              fontFamily: "TiltNeon-Regular",
+            }
           }}
         />
       </Tab.Navigator>
@@ -125,6 +138,7 @@ const styles = StyleSheet.create({
     marginLeft: 1,
     fontSize: 14,
     color: 'black',
+    fontFamily: "TiltNeon-Regular",
   },
   appLogo: {
     width: 100,
@@ -153,6 +167,7 @@ const styles = StyleSheet.create({
   notificationText: {
     color: 'white',
     fontSize: 10,
+    fontFamily: "TiltNeon-Regular",
   },
   rightContainer: {
     flexDirection: 'row',

@@ -3,6 +3,7 @@ import { Text, View, ScrollView, Image, Dimensions } from 'react-native';
 import { styles } from './styles';
 import { Switch, Divider } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import ServicePoster from '../../components/service_poster/ServicePoster';
 
 
 const Home: React.FC = () => {
@@ -12,9 +13,73 @@ const Home: React.FC = () => {
 
     // Dummy images for the scroll view
     const images = [
-        require('../../assets/1.jpg'),
-        require('../../assets/2.jpg'),
-        require('../../assets/3.jpg'),
+        {
+            poster: require('../../assets/ads/1.png'),
+            service: 'Haircut',
+        },
+        {
+            poster: require('../../assets/ads/2.png'),
+            service: 'Hair Color',
+        },
+        {
+            poster: require('../../assets/ads/3.png'),
+            service: 'Shave',
+        },
+
+    ];
+
+    const servicesMale = [
+        {
+            icon: require('../../assets/service/hair-cut-male.png'),
+            service: 'Haircut',
+        },
+        {
+            icon: require('../../assets/service/hair-color-male.png'),
+            service: 'Hair Color',
+        },
+        {
+            icon: require('../../assets/service/skin-care-male.png'),
+            service: 'Skin Care',
+        },
+        {
+            icon: require('../../assets/service/makeup-male.png'),
+            service: 'Makeup',
+        },
+        {
+            icon: require('../../assets/service/manicure-male.png'),
+            service: 'Mani and Pedi',
+        },
+        {
+            icon: require('../../assets/service/spa-male.png'),
+            service: 'Spa & Massage',
+        },
+    ];
+
+    const servicesFemale = [
+        {
+            icon: require('../../assets/service/hair-cut-female.png'),
+            service: 'Haircut',
+        },
+        {
+            icon: require('../../assets/service/hair-color-female.png'),
+            service: 'Hair Color',
+        },
+        {
+            icon: require('../../assets/service/skin-care-female.png'),
+            service: 'Skin Care',
+        },
+        {
+            icon: require('../../assets/service/makeup-female.png'),
+            service: 'Makeup',
+        },
+        {
+            icon: require('../../assets/service/manicure-female.png'),
+            service: 'Mani and Pedi',
+        },
+        {
+            icon: require('../../assets/service/spa-female.png'),
+            service: 'Spa & Massage',
+        },
     ];
 
     useEffect(() => {
@@ -37,6 +102,7 @@ const Home: React.FC = () => {
 
     return (
         <ScrollView style={styles.container}>
+
             {/* Horizontal scroll with snapping to center */}
             <ScrollView
                 ref={scrollRef}
@@ -48,7 +114,7 @@ const Home: React.FC = () => {
             >
                 {images.map((image, index) => (
                     <View key={index} style={styles.imageContainer}>
-                        <Image source={image} style={styles.image} />
+                        <Image source={image.poster} style={styles.image} />
                     </View>
                 ))}
             </ScrollView>
@@ -93,23 +159,17 @@ const Home: React.FC = () => {
 
             <View style={styles.gridContainer}>
 
-                {images.map((poster, index) => (
-                    <View key={index} style={styles.posterContainer}>
-                        <Image source={poster} style={styles.poster} />
-                    </View>
-                ))}
+                {
+                    isMale ?
+                        servicesFemale.map((elem, index) => (
+                            <ServicePoster service={elem.service} index={index} key={index} poster={elem.icon} />
+                        )) :
+                        servicesMale.map((elem, index) => (
+                            <ServicePoster service={elem.service} index={index} key={index} poster={elem.icon} />
+                        ))
 
-                {images.map((poster, index) => (
-                    <View key={index} style={styles.posterContainer}>
-                        <Image source={poster} style={styles.poster} />
-                    </View>
-                ))}
+                }
 
-                {images.map((poster, index) => (
-                    <View key={index} style={styles.posterContainer}>
-                        <Image source={poster} style={styles.poster} />
-                    </View>
-                ))}
             </View>
 
 

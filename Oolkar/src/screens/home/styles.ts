@@ -14,6 +14,8 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 20,
         color: 'black',
+        fontFamily: "TiltNeon-Regular"
+        // TiltNeon-Regular
     },
     horizontalScroll: {
         marginVertical: 20,
@@ -38,6 +40,7 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
         width: '100%',
         textAlign: 'center',
+        fontFamily: "TiltNeon-Regular"
 
     },
     categoryContainer: {
@@ -53,6 +56,7 @@ export const styles = StyleSheet.create({
         color: 'black',
         marginBottom: 10,
         textAlign: 'center',
+        fontFamily: "TiltNeon-Regular"
 
     },
     switch: {
@@ -67,29 +71,22 @@ export const styles = StyleSheet.create({
         color: 'skyblue',
         fontSize: 16,
         fontWeight: '500',
+        fontFamily: "TiltNeon-Regular"
     },
     categoryIconFemaleText: {
         color: 'purple',
         fontSize: 16,
         fontWeight: '500',
+        fontFamily: "TiltNeon-Regular"
     },
     gridContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         marginTop: 20,
+        marginBottom: 20,
     },
-    posterContainer: {
-        width: '30%', // 3 elements in a row
-        marginBottom: 10,
-    },
-    poster: {
-        width: '100%',
-        height: 110, // You can adjust the height as needed
-        resizeMode: 'cover',
-        borderRadius: 10,
-        aspectRatio: 1,
-    },
+
 
 
 });
