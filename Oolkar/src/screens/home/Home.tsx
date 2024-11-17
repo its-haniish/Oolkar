@@ -5,9 +5,8 @@ import { Switch, Divider } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ServicePoster from '../../components/service_poster/ServicePoster';
 
-
 const Home: React.FC = () => {
-    const [isMale, setIsMale] = useState<boolean>(true);
+    const [isFemale, setIsFemale] = useState<boolean>(false);
     const scrollRef = useRef<ScrollView>(null);
     const screenWidth = Dimensions.get('window').width;
 
@@ -133,10 +132,11 @@ const Home: React.FC = () => {
                     </View>
                     <Switch
                         style={styles.switch}
-                        value={isMale}
-                        onValueChange={() => setIsMale(!isMale)}
+                        value={isFemale}
+                        onValueChange={() => setIsFemale(!isFemale)}
                         trackColor={{ false: 'lightgray', true: 'lightgray' }} // Switch background for Male
-                        thumbColor={isMale ? "purple" : "skyblue"} // Thumb color for Male
+                        thumbColor={isFemale ? "purple" : "skyblue"} // Thumb color for Male
+
                     />
                     <View style={styles.categoryIconContainer}>
 
@@ -160,7 +160,7 @@ const Home: React.FC = () => {
             <View style={styles.gridContainer}>
 
                 {
-                    isMale ?
+                    isFemale ?
                         servicesFemale.map((elem, index) => (
                             <ServicePoster service={elem.service} index={index} key={index} poster={elem.icon} />
                         )) :

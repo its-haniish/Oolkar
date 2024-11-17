@@ -44,3 +44,5 @@ eslintcache
 # IDE Settings
 .idea/
 .vscode/
+node_modules
+

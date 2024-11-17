@@ -76,14 +76,13 @@ const App = () => {
             ref={ref} // Attach the ref to the image
             src="/white_transparent.png"
             alt="Oolkar logo"
-            className={`absolute top-4 left-4 z-10  ${isMobile ? 'w-32' : 'w-52'} h-auto`}
+            className={`absolute top-4 left-4 z-10 cursor-pointer  ${isMobile ? 'w-32' : 'w-52'} h-auto`}
             initial={{ opacity: 0, x: -100 }} // Initial state
             animate={{
               opacity: inView ? 1 : 0, // Animate opacity based on inView
               x: inView ? 0 : -100, // Animate position
             }}
             transition={{ duration: 1 }} // Animation duration
-
 
           />
 
@@ -98,6 +97,21 @@ const App = () => {
               Launching <br /> Soon!
             </p>
           </div>
+
+          <motion.div className="absolute top-4 right-6"
+            initial={{ opacity: 0, x: +100 }} // Initial state
+            animate={{
+              opacity: inView ? 1 : 0, // Animate opacity based on inView
+              x: inView ? 0 : +100, // Animate position
+            }}
+            transition={{ duration: 1 }} // Animation duration
+
+          >
+            <button className={`${isMobile ? "text-sm py-1 px-2 " : "py-1 px-6"} bg-black text-white border-2 border-red-100 rounded-md hover:bg-stone-900`}>
+              Blogs  &#8599;
+            </button>
+          </motion.div>
+
         </section>
 
         {/* About Section */}
@@ -106,7 +120,7 @@ const App = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-5">
             <h2 className={`text-gray-400 ${isMobile ? 'text-xl' : 'text-2xl'} text-center`}>ABOUT</h2>
 
-            <p className={`text-white  px-7  text-justify ${isMobile ? 'h-fit text-2xl leading-8 tracking-normal w-screen' : 'h-[32vh] text-4xl leading-10 tracking-wider'}`}>
+            <p className={`text-white  px-7  text-justify ${isMobile ? 'h-fit text-2xl leading-8 tracking-normal w-screen' : 'min-h-[50vh]  h-fit text-4xl leading-10 tracking-wider'}`}>
               Oolkar is an innovative booking platform connecting salon and parlor service providers with users seeking hassle-free appointments. Enjoy the convenience of booking services without any platform charges or fees. Oolkar is made with love by our dedicated team for everyone!
             </p>
 

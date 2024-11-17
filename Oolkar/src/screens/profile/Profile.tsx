@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, View, Text, ScrollView } from 'react-native'
+import { TouchableWithoutFeedback, View, Text, ScrollView } from 'react-native'
 import { Divider } from "react-native-paper"
 import { styles } from './styles'
 import { Avatar } from 'react-native-paper';
@@ -25,11 +25,11 @@ const Profile: React.FC = () => {
                     <Text style={styles.username}>
                         itshaniish
                     </Text>
-                    <TouchableOpacity style={styles.editProfileBtn}>
+                    <TouchableWithoutFeedback style={styles.editProfileBtn}>
                         <Text style={styles.editProfileText}>
                             Edit Profile
                         </Text>
-                    </TouchableOpacity>
+                    </TouchableWithoutFeedback>
                 </View>
 
             </View>

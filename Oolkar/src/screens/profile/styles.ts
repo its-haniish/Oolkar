@@ -19,12 +19,12 @@ export const styles = StyleSheet.create({
     },
     editProfileBtn: {
         backgroundColor: 'rgb(0, 122, 255)',
-        padding: 10,
+        paddingVertical: 5,
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         elevation: 5
     },
     editProfileText: {
