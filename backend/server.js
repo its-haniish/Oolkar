@@ -4,10 +4,10 @@ const cors = require('cors');
 const connectDB = require('./utils/connectDB.js');
 const routes = require('./routes/routes.js');
 
-const app = express();
+const app = express({});
 const PORT = process.env.PORT || 8080;
 // Middleware
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 app.use(cors());
 
 // Existing routes
