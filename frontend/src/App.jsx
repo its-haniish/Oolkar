@@ -4,6 +4,7 @@ import 'aos/dist/aos.css'; // Import AOS CSS file
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer'; // Import useInView
 import useMobile from "./hooks/useMobile"
+import { useNavigate } from 'react-router-dom'
 
 const App = () => {
   const [showSubscribePopup, setShowSubscribePopup] = useState(false);
@@ -17,6 +18,7 @@ const App = () => {
   ;
 
   const isMobile = useMobile();
+  const navigate = useNavigate();
 
   const handleSubscribe = async () => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -107,7 +109,9 @@ const App = () => {
             transition={{ duration: 1 }} // Animation duration
 
           >
-            <button className={`${isMobile ? "text-sm py-1 px-2 " : "py-1 px-6"} bg-black text-white border-2 border-red-100 rounded-md hover:bg-stone-900`}>
+            <button
+              onClick={() => navigate('/blogs')}
+              className={`${isMobile ? "text-sm py-1 px-2 " : "py-1 px-6"} bg-black text-white border-2 border-red-100 rounded-md hover:bg-stone-900`}>
               Blogs  &#8599;
             </button>
           </motion.div>
